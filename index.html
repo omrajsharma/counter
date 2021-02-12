@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omraj | Counter</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            background-image: linear-gradient(#3E5151, #DECBA4);
+        }
+
+        #mainDiv{
+            width: 80vw;
+            height: 100vh;
+            margin: auto;
+            padding: 20vh 0;
+        }
+
+        #secondDiv{
+            width: 100%;
+            height: 50vh;
+            margin: auto;
+            box-shadow: 2px 2px 10px black;
+        }
+
+        #heading{
+            padding: 3vw;
+            color: rgb(224, 214, 214);
+            font-size: 4vw;
+            background-image: none;
+            text-align: center;
+            text-shadow: 2px 2px 3px black;
+            font-family: cursive;
+        }
+
+        #counterDiv{
+            width: 100%;
+            background-image: none;
+        }
+
+        #counter{
+            background-image: none;
+            text-align: center;
+            font-size: 10vh;
+            color: white;
+            text-shadow: 1px 1px 6px black;
+        }
+
+        .button{
+            border-radius: 200px;
+            border: none;
+            padding: 1vh 0;
+            font-size: 4vw;
+            width: 40%;
+            margin: 2% 30%;
+            color: lavender;
+        }
+
+        .button:hover{
+            box-shadow: 0px 0px 7px black;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- HTML -->
+    <div id="mainDiv">
+        <div id="secondDiv">
+            <h1 id="heading">Counter</h1>
+            <div id="counterDiv">
+                <h1 id="counter">00:00:00</h1>
+                <button type="button" class="button" id="start"> Start </button> <br>
+                <button type="button" class="button" id="stop"> Stop </button> <br>
+                <button type="button" class="button" id="reset"> Reset </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SCRIPT -->
+    <script>
+        let countSec = 00 ;
+        let countMin = 00 ;
+        let countHr = 00 ;
+
+        let countDisplay = document.getElementById('counter');;
+
+        let butStart = document.getElementById('start')
+        butStart.addEventListener('click', () => {
+            interval = setInterval(() => {
+                if(countSec == 60){
+                    countSec = 00;
+                    countMin++;
+                }
+                if(countMin == 60){
+                    countMin = 00;
+                    counthr++;
+                }
+                countDisplay.innerHTML = `${countHr}:${countMin}:${countSec}`;
+                countSec++;
+            }, 1000);
+        })
+
+        let butStop = document.getElementById('stop')
+        butStop.addEventListener('click', () => {
+            clearInterval(interval);
+        })
+
+        let butReset = document.getElementById('reset')
+        butReset.addEventListener('click', () => {
+            countSec = 00 ;
+            countMin = 00 ;
+            countHr = 00 ;
+            countDisplay.innerHTML = `${countHr}:${countMin}:${countSec}`;  
+            clearInterval(interval);         
+        })
+    </script>
+</body>
+</html>
